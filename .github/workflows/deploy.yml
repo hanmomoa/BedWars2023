@@ -3,7 +3,7 @@ name: Deploy package to BedWars Repo + Create a release
 on:
   workflow_dispatch:
   push:
-    branches: [production, workflow-test]
+    branches: [development, workflow-test]
 
 jobs:
   create-jar:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          ref: 'production'
+          ref: 'development'
           fetch-depth: 0 # Fetch all history and tags
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -60,7 +60,7 @@ jobs:
         id: release
         uses: softprops/action-gh-release@v2
         with:
-          target_commitish: production
+          target_commitish: development
           tag_name: ${{ needs.create-jar.outputs.version }}
           generate_release_notes: true
           files: "target/BedWars-*"
@@ -74,7 +74,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          ref: 'production'
+          ref: 'development'
           fetch-depth: 0 # Fetch all history and tags
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -112,7 +112,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          ref: 'production'
+          ref: 'development'
           fetch-depth: 0 # Fetch all history and tags
       - name: Set up JDK 21
         uses: actions/setup-java@v4
