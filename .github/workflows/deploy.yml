@@ -1,6 +1,7 @@
 name: Deploy package to BedWars Repo + Create a release
 
 on:
+  workflow_dispatch:
   push:
     branches: [production, workflow-test]
 
